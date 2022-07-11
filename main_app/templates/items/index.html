@@ -3,13 +3,17 @@
 
 {% block content  %}
 
-
+<div class = "item-container">
 {% for item in items %}
+<div class = "card">
+<a href="{% url 'item_detail' item.id %}">
+    <div class="card-content">
+        <span class="card-title">{{item.name}} ${{item.price}}</span>
 
-<div class ='card-container'>
-    <h1> {{item.name}}</h1>
-    <h2> ${{item.price}} </h2>
 </div>
+</div>
+</a>
 
 {% endfor %}
+</div>
 {% endblock %}
