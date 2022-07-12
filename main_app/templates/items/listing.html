@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+
+{% block content  %}
+
+{% if items %}
+<div class = "item-container">
+{% for item in items %}
+<div class = "card">
+<a href="{% url 'item_detail' item.id %}">
+    <div class="card-content">
+        <div class ="parent-image">
+        {% for photo in item.photo_set.all %}  
+<img  class = "item_image" src="{{photo.url}}" max-width = "250px" height = "250px">
+{% empty %}
+<div class="card-panel teal-text center-align">No Photos Uploaded</div>
+{% endfor %}
+</div> 
+        <span class="card-title">{{item.name}} ${{item.price}}</span>
+
+</div>
+</a>
+</div>
+
+
+{% endfor %}
+</div>
+{% else %}
+
+<h2> You have no listings 😢 </h2>
+<a href="{% url 'items_create' %}"> Create a Listing!</a>
+{% endif %}
+{% endblock %}

@@ -4,6 +4,7 @@
 
 <h1> {{item.name}}</h1>
 <h2> Price: $ {{item.price}}</h2>
+<h4> Seller: {{item.user}}</h4>
 <div class ="parent-image">
 {% for photo in item.photo_set.all %}   
 <img class = "item_image" src="{{photo.url}}" max-width = "200px">
@@ -11,11 +12,13 @@
 <div class="card-panel teal-text center-align">No Photos Uploaded</div>
 {% endfor %}
 </div>
+
+{% if request.user == item.user %}
 <div class="card-action">
     <a href="{% url 'item_update' item.id %}">Edit</a>
     <a href="{% url 'item_delete' item.id %}">Delete</a>
   </div>
-
+{% endif %}
   <h2> Description: </h2>
   <p> {{item.description}}</p>
 

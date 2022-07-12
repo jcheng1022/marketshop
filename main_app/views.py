@@ -8,6 +8,8 @@ from django.urls import reverse
 from .forms import ItemForm
 import uuid
 import boto3
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 # Create your views here.
 S3_BASE_URL = 'https://s3.us-east-1.amazonaws.com/'
 BUCKET = 'marketshop-7'
@@ -19,10 +21,15 @@ def item_index(request):
     items = Item.objects.all()
     return render(request, 'items/index.html', {'items':items})
 
+@login_required
+def listing(request):
+    items = Item.objects.filter(user = request.user)
+    return render(request, 'items/listing.html', {'items': items})
+
 def items_detail(request, item_id):
     item = Item.objects.get(id=item_id)
     return render(request, 'items/detail.html', {
-        'item':item})
+        'item':item, 'request':request})
 
 def signup(request):
     error_message = ''
@@ -38,7 +45,7 @@ def signup(request):
     context = {'form':form, 'error_message':error_message}
     return render(request, 'registration/signup.html', context)
 
-class ItemCreate(CreateView):
+class ItemCreate(LoginRequiredMixin, CreateView):
     model = Item
     fields  = ['name','category','price','description']
     def form_valid(self, form):
@@ -51,15 +58,15 @@ class ItemCreate(CreateView):
     # def get_absolute_url(self):
     #     return reverse('detail', kwargs={'item_id':self.id})
 
-class ItemUpdate(UpdateView):
+class ItemUpdate(LoginRequiredMixin, UpdateView):
     model = Item
     fields = '__all__'
 
-class ItemDelete(DeleteView):
+class ItemDelete(LoginRequiredMixin, DeleteView):
     model = Item
     success_url = '/items/browse/'
 
-
+@login_required
 def add_photo(request, item_id):
     # photo-file will be the "name" attribute on the <input type="file">
     photo_file = request.FILES.get('photo-file', None)

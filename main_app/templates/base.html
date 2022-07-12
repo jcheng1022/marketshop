@@ -25,10 +25,11 @@
           </ul>
           <ul class="navlinks">
         
-            <li><a href="{% url 'index' %}">Browse</a></li>
+            <li><a href="{% url 'index' %}">Explore Listings</a></li>
             {% if user.is_authenticated %}
-            <li><a href="{% url 'logout' %}"> Logout</a></li>
+            <li><a href="{% url 'listing' %}">View My Listings</a></li>
             <li><a href="{% url 'items_create' %}"> List an Item</a></li>
+            <li><a href="{% url 'logout' %}"> Logout</a></li>
             <span> {{user.get_username}} </span>
             {% else %}
             <li> <a href="{% url 'login' %}"> Log In</a></li>
