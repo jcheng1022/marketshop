@@ -8,8 +8,10 @@
     rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
   />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}" />
+    
     <title>MarketShop | It's your market</title>
   </head>
   <body>
@@ -26,6 +28,8 @@
             <li><a href="{% url 'index' %}">Browse</a></li>
             {% if user.is_authenticated %}
             <li><a href="{% url 'logout' %}"> Logout</a></li>
+            <li><a href="{% url 'items_create' %}"> List an Item</a></li>
+            <span> {{user.get_username}} </span>
             {% else %}
             <li> <a href="{% url 'login' %}"> Log In</a></li>
             <li> <a href="{% url 'signup' %}"> Sign Up</a></li>
@@ -40,5 +44,10 @@
         Created by Jacky Cheng   
       </div>
     </footer>
+
+    <script>
+        var selectEl = document.getElementById('id_category');
+  M.FormSelect.init(selectEl);
+    </script>
   </body>
 </html>

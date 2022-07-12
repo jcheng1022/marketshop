@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+<h3> Are you sure you want to delete {{object.name}} ?</h3>
+
+<ul>
+    <li>  This action is irreversible!</li>
+    <li>  You will lose any changes to this item once you delete it</li>
+</ul>
+
+
+<form action="" method="POST">
+    {% csrf_token %}
+    <input type ="Submit" value ="DELETE ITEM" class="btn" />
+    <a href ="{% url 'item_detail' item.id %}"> Go back</a>
+</form>
+
+
+{% endblock %}

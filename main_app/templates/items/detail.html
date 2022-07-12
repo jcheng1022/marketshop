@@ -4,5 +4,10 @@
 
 
 <h1> {{item.name}}</h1>
+<div class="card-action">
+    <a href="{% url 'item_update' item.id %}">Edit</a>
+    <a href="{% url 'item_delete' item.id %}">Delete</a>
+  </div>
+
 
 {% endblock %}
