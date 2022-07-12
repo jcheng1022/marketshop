@@ -1,13 +1,16 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from .models import Item
+from .models import Item, Photo
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.urls import reverse
 from .forms import ItemForm
+import uuid
+import boto3
 # Create your views here.
-
+S3_BASE_URL = 'https://s3.us-east-1.amazonaws.com/'
+BUCKET = 'marketshop-7'
 
 def home (request):
     return render(request, 'home.html')
@@ -55,3 +58,23 @@ class ItemUpdate(UpdateView):
 class ItemDelete(DeleteView):
     model = Item
     success_url = '/items/browse/'
+
+
+def add_photo(request, item_id):
+    # photo-file will be the "name" attribute on the <input type="file">
+    photo_file = request.FILES.get('photo-file', None)
+    if photo_file:
+        s3 = boto3.client('s3')
+        # need a unique "key" for S3 / needs image file extension too
+        key = uuid.uuid4().hex[:6] + photo_file.name[photo_file.name.rfind('.'):]
+        # just in case something goes wrong
+        try:
+            s3.upload_fileobj(photo_file, BUCKET, key)
+            # build the full url string
+            url = f"{S3_BASE_URL}{BUCKET}/{key}"
+            # we can assign to item_id or cat (if you have a cat object)
+            photo = Photo(url=url, item_id=item_id)
+            photo.save()
+        except:
+            print('An error occurred uploading file to S3')
+    return redirect('item_detail', item_id=item_id)

@@ -30,3 +30,10 @@ class Item(models.Model):
     
     def get_absolute_url(self):
         return reverse('item_detail', kwargs={'item_id': self.id})
+
+class Photo(models.Model):
+    url = models.CharField(max_length = 200)
+    item = models.ForeignKey(Item, on_delete=models.CASCADE)
+    
+    def __str__(self):
+        return f"Photo for item_id: {self.item_id} @ {self.url}"

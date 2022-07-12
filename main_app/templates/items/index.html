@@ -10,6 +10,13 @@
 <div class = "card">
 <a href="{% url 'item_detail' item.id %}">
     <div class="card-content">
+        <div class ="parent-image">
+        {% for photo in item.photo_set.all %}  
+<img  class = "item_image" src="{{photo.url}}" max-width = "250px" height = "250px">
+{% empty %}
+<div class="card-panel teal-text center-align">No Photos Uploaded</div>
+{% endfor %}
+</div> 
         <span class="card-title">{{item.name}} ${{item.price}}</span>
 
 </div>
