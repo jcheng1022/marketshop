@@ -11,4 +11,5 @@ urlpatterns = [
     path('items/<int:pk>/delete/', views.ItemDelete.as_view(), name='item_delete'),
     path('items/<int:item_id>/add_photo/',views.add_photo, name="add_photo"),
     path('items/mylistings', views.listing, name ='listing'),
+    path('item/<int:item_id>/add_comment/', views.add_comment, name = "add_comment"),
 ]

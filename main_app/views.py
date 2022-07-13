@@ -5,7 +5,7 @@ from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.urls import reverse
-from .forms import ItemForm
+from .forms import ItemForm, CommentForm
 import uuid
 import boto3
 from django.contrib.auth.decorators import login_required
@@ -27,9 +27,10 @@ def listing(request):
     return render(request, 'items/listing.html', {'items': items})
 
 def items_detail(request, item_id):
+    comment_form = CommentForm()
     item = Item.objects.get(id=item_id)
     return render(request, 'items/detail.html', {
-        'item':item, 'request':request})
+        'item':item,'comment_form':comment_form })
 
 def signup(request):
     error_message = ''
@@ -85,3 +86,12 @@ def add_photo(request, item_id):
         except:
             print('An error occurred uploading file to S3')
     return redirect('item_detail', item_id=item_id)
+
+@login_required
+def add_comment(request, item_id):
+    form = CommentForm(request.POST)
+    if form.is_valid():
+        new_comment = form.save(commit=False)
+        new_comment.item_id = item_id
+        new_comment.save()
+    return redirect('item_detail', item_id = item_id)

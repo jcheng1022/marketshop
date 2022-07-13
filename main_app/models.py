@@ -1,8 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.urls import reverse
-from datetime import date
-
 # Create your models here.
 
 CATEGORIES = (
@@ -22,7 +20,7 @@ class Item(models.Model):
         choices = CATEGORIES,
         default = CATEGORIES[6][0]
     )
-    price = models.IntegerField()
+    price = models.IntegerField(default = 0)
     description = models.TextField(max_length = 350)
     user = models.ForeignKey(User, on_delete = models.CASCADE)
     def __str__(self):
@@ -37,3 +35,11 @@ class Photo(models.Model):
     
     def __str__(self):
         return f"Photo for item_id: {self.item_id} @ {self.url}"
+
+
+class Comment(models.Model):
+    text = models.TextField(max_length = 350)
+    user = models.ForeignKey(User, on_delete = models.CASCADE)
+    item = models.ForeignKey(Item, on_delete = models.CASCADE)
+    def __str__(self):
+        return self.text

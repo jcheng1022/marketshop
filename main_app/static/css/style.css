@@ -2,12 +2,22 @@
     font-family: 'IBM Plex Sans Thai', sans-serif;
 }
 
+.footer-container{
+    position:absolute;
+    bottom:0;
+    width: 100%;
+    margin-top:20px;
+    height: 50px;
+    background-color:#a8b1bf;
+    text-align:center;
+  }
+
+
 .nav-wrapper{
     background-color:black;
     display:flex;
     justify-content: space-between;
 }
-
 .navlinks {
     padding:0;
     margin-right: 30px;
@@ -31,12 +41,6 @@
 }
 
 
-.page-footer {
-    position:absolute;
-    bottom:0;
-    
-}
-
 .item-container {
 display: grid;
 grid-template-columns: repeat(5, 1fr);
@@ -52,12 +56,49 @@ grid-row-gap: 0px;
     border-radius:10px;
 }
 
-.item_image {
-    max-width: 250px;
+.comment-card{
+    border-bottom:1px solid grey;
+    padding: 5px;
 }
 
-.parent-image {
-    width: 250px;
-    height: 300px;
-    overflow-y:auto;
+
+.card-content{
+    font-size: 15px;
+}
+
+.comment-container{
+    overflow-y:scroll;
+    max-height: 150px;
+    border-radius:3px;
+    border: 1px solid grey;
+}
+
+.comment-user {
+    font-size: 18px;
+    color:#acc3e8;
+}
+
+.comment-text {
+    font-size: 15px;
+}
+
+.detail-image {
+    border:1px solid #757575;
+
+}
+
+.item-detail-container {
+    display:inline-block;
+    vertical-align:top;
+    padding: 5px;
+}
+
+.item-name {
+    font-size: 30px;
+    font-weight:900;
+    font-family: 'Secular One', sans-serif;
+}
+
+.item-info-container {
+    margin-top:30px;
 }

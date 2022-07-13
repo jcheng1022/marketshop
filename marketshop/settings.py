@@ -78,7 +78,7 @@ WSGI_APPLICATION = 'marketshop.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'project4db',
+        'NAME': 'marketshopdb',
     }
 }
 
@@ -127,6 +127,8 @@ LOGOUT_REDIRECT_URL= '/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
+STRIPE_PUBLISHABLE_KEY='pk_test_51LKqKSDRRLWTQi7mRkWrdXp3ZpRhxQw5uJE4aTzRMxbgJTb04puO7Vh6p0ybDVyZN5bDJM0EDsAe05qfS5h0XQov00sm0tHVSx'
+STRIPE_SECRET_KEY=config("SECRET_KEY")
 
 import django_heroku
 django_heroku.settings(locals())

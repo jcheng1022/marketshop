@@ -2,26 +2,27 @@
 
 {% block content %}
 
-<h1> {{item.name}}</h1>
-<h2> Price: $ {{item.price}}</h2>
-<h4> Seller: {{item.user}}</h4>
-<div class ="parent-image">
+
+<div class="item-info-container">
 {% for photo in item.photo_set.all %}   
-<img class = "item_image" src="{{photo.url}}" max-width = "200px">
+<img class = "detail-image" src="{{photo.url}}" max-width = "200px">
 {% empty %}
 <div class="card-panel teal-text center-align">No Photos Uploaded</div>
 {% endfor %}
+<div class="item-detail-container"> 
+<p class = "item-name"> {{item.name}}</p>
+<p class = "item-price"> Price: $ {{item.price}}</p>
+<p class = "item-user"> Seller: {{item.user}}</p>
 </div>
-
+</div>
 {% if request.user == item.user %}
 <div class="card-action">
-    <a href="{% url 'item_update' item.id %}">Edit</a>
-    <a href="{% url 'item_delete' item.id %}">Delete</a>
+    <a class = "edit-btn" href="{% url 'item_update' item.id %}">Edit</a>
+    <a  class = "delete-btn" href="{% url 'item_delete' item.id %}">Delete</a>
   </div>
 {% endif %}
   <h2> Description: </h2>
   <p> {{item.description}}</p>
-
 
 
 <br>
@@ -44,4 +45,28 @@
 
 {% endif %}
 
+
+
+<h4 class ='comment-header'> Comments:</h4> 
+<div class = 'comment-container'>
+  {% if item.comment_set.all %}
+{% for comment in item.comment_set.all %}  
+<div class="comment-card" >
+    <div class="comment-content">
+        <h6 class = "comment-user"> {{comment.user}}</h6>
+        <p class ="comment-text"> {{comment.text}}</p> 
+
+    </div> 
+</div>
+{% endfor %}
+{% else %}
+<p> No comments yet... be the first one!</p>
+{% endif %}
+</div>
+
+<form action="{% url 'add_comment' item.id %}" method="POST">
+{% csrf_token %}
+{{comment_form.as_p}}
+<input type="submit" class="btn" value="Add comment">
+</form>
 {% endblock %}
