@@ -87,11 +87,20 @@ def add_photo(request, item_id):
             print('An error occurred uploading file to S3')
     return redirect('item_detail', item_id=item_id)
 
+
+# class CommentCreate(LoginRequiredMixin, CreateView):
+#     model = Item
+#     fields  = ['text']
+#     def form_valid(self, form):
+#         form.instance.user = self.request.user
+#         return super().form_valid(form)   
+
 @login_required
 def add_comment(request, item_id):
     form = CommentForm(request.POST)
     if form.is_valid():
         new_comment = form.save(commit=False)
         new_comment.item_id = item_id
+        new_comment.user = request.user
         new_comment.save()
     return redirect('item_detail', item_id = item_id)
