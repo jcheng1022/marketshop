@@ -48,20 +48,21 @@
 
 
 <h4 class ='comment-header'> Comments:</h4> 
-<div class = 'comment-container'>
-  {% if item.comment_set.all %}
-{% for comment in item.comment_set.all %}  
-<div class="comment-card" >
-    <div class="comment-content">
-        <h6 class = "comment-user"> {{comment.user}}</h6>
-        <p class ="comment-text"> {{comment.text}}</p> 
+  <div class = 'comment-container'>
+    {% if item.comment_set.all %}
+    {% for comment in item.comment_set.all %}  
+    <div class="comment-card" >
+      <div class="comment-content">
+          <h6 class = "comment-user"> {{comment.user}}</h6>
+          <p class ="comment-text"> {{comment.text}}</p> 
 
-    </div> 
-</div>
-{% endfor %}
-{% else %}
-<p> No comments yet... be the first one!</p>
-{% endif %}
+      </div> 
+    </div>
+
+  {% endfor %}
+  {% else %}
+    <p> No comments yet... be the first one!</p>
+  {% endif %}
 </div>
 
 <form action="{% url 'add_comment' item.id %}" method="POST">
