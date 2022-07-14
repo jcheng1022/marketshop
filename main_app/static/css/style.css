@@ -22,6 +22,9 @@ body{
 .contact-btn:hover {
     cursor:pointer; 
 }
+.cart-btn:hover {
+    cursor:pointer; 
+}
 
 .contact-btn {
 padding: 15px 25px;
@@ -35,6 +38,12 @@ border-radius:8px;
     background-color: #7fa7c9;
     padding: 10px 20px;
     border: 2px solid black;
+}
+
+.cart-btn {
+    padding: 15px 30px;
+    background-color: #a6a49c;
+    border-radius:8px;
 }
 .delete-btn {
     color:black;
