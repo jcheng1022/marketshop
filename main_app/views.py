@@ -61,7 +61,7 @@ class ItemCreate(LoginRequiredMixin, CreateView):
 
 class ItemUpdate(LoginRequiredMixin, UpdateView):
     model = Item
-    fields = '__all__'
+    fields = ['name', 'category', 'price', 'description']
 
 class ItemDelete(LoginRequiredMixin, DeleteView):
     model = Item

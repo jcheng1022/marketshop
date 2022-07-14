@@ -11,7 +11,12 @@
 {% endfor %}
 <div class="item-detail-container"> 
 <p class = "item-name"> {{item.name}}</p>
-<p class = "item-price"> Price: $ {{item.price}}</p>
+<p class = "item-price"> Price: $ {{item.price}} 
+  <form action="#"> 
+    <input class="buy-btn" type="submit" value="Buy">
+    <input class="contact-btn" type="submit" value="Contact Seller">
+  </form>
+</p> 
 <p class = "item-user"> Seller: {{item.user}}</p>
 </div>
 </div>
@@ -21,7 +26,7 @@
     <a  class = "delete-btn" href="{% url 'item_delete' item.id %}">Delete</a>
   </div>
 {% endif %}
-  <h2> Description: </h2>
+  <h2 class ='item-description'> Item Description: </h2>
   <p> {{item.description}}</p>
 
 
