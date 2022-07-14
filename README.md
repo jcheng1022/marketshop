@@ -8,6 +8,7 @@
 <ul>
     <li> Python</li>
     <li> Django</li>
+    <li> AWS</li>
     <li> PostgreSQL</li>
     <li> Heroku</li>
     <li> Materialize</li>
