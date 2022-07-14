@@ -12,6 +12,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Secular+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@700&family=Secular+One&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}" />
     <title>MarketShop | It's your market</title>
   </head>
@@ -21,20 +22,20 @@
         <div class="nav-wrapper">
           <ul>
             <li>
-              <a href="/" class="left brand-logo">  MarketShop</a>
+              <a href="/" class="left-brand-logo">  MarketShop</a>
             </li>
           </ul>
           <ul class="navlinks">
         
-            <li><a href="{% url 'index' %}">Explore Listings</a></li>
+            <li><a class ="navbar-links" href="{% url 'index' %}">Browse</a></li>
             {% if user.is_authenticated %}
-            <li><a href="{% url 'listing' %}">View My Listings</a></li>
-            <li><a href="{% url 'items_create' %}"> List an Item</a></li>
-            <li><a href="{% url 'logout' %}"> Logout</a></li>
-            <span> {{user.get_username}} </span>
+            <li><a class ="navbar-links" href="{% url 'listing' %}">View My Listings</a></li>
+            <li><a class ="navbar-links" href="{% url 'items_create' %}"> List an Item</a></li>
+            <li><a class ="navbar-links" href="{% url 'logout' %}"> Logout</a></li>
+            <span> Hi there, {{user.get_username}} </span>
             {% else %}
-            <li> <a href="{% url 'login' %}"> Log In</a></li>
-            <li> <a href="{% url 'signup' %}"> Sign Up</a></li>
+            <li> <a class ="navbar-links" href="{% url 'login' %}"> Log In</a></li>
+            <li> <a class ="navbar-links"  href="{% url 'signup' %}"> Sign Up</a></li>
             {% endif %}
           </ul>
         </div>
@@ -43,6 +44,11 @@
     <main class="container">{% block content %} {% endblock %}</main>
     <footer class="footer-container">
         Created by Jacky Cheng   
+        <br>
+        <div class="socials">
+        <a href="https://www.linkedin.com/in/jackychengjc/"> LinkedIn</a> 
+        <a href="https://github.com/jcheng1022"> GitHub </a>
+      </div>
     </footer>
 
     <script>

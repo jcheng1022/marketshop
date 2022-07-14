@@ -1,13 +1,73 @@
-{% extends 'base.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+  />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Secular+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@700&family=Secular+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}" />
+    <title>MarketShop | It's your market</title>
+  </head>
+  <body class = 'home-page'>
+    <header class="navbar-fixed">
+      <nav>
+        <div class="nav-wrapper">
+          <ul>
+            <li>
+              <a href="/" class="left-brand-logo">  MarketShop</a>
+            </li>
+          </ul>
+          <ul class="navlinks">
+        
+            <li><a class ="navbar-links" href="{% url 'index' %}">Browse</a></li>
+            {% if user.is_authenticated %}
+            <li><a class ="navbar-links" href="{% url 'listing' %}">View My Listings</a></li>
+            <li><a class ="navbar-links" href="{% url 'items_create' %}"> List an Item</a></li>
+            <li><a class ="navbar-links" href="{% url 'logout' %}"> Logout</a></li>
+            <span> Hi there, {{user.get_username}} </span>
+            {% else %}
+            <li> <a class ="navbar-links" href="{% url 'login' %}"> Log In</a></li>
+            <li> <a class ="navbar-links"  href="{% url 'signup' %}"> Sign Up</a></li>
+            {% endif %}
+          </ul>
+        </div>
+      </nav>
+    </header>
+    <h1 class= 'home-heading'> Welcome to MarketShop.</h1>
+<div class="home-info">
+    <p class="home-text"> 
+   A marketplace stripped down to it's simplest form. Discover new items for your collection, new decor for your home, new toys for the kids, and so much more. Marketstore provides you an outlet for you to be in control of where your loved items go next. Let's give a new future to an item of your past. 
+    
+    </p>
+    <p class="home-text"> 
+        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Recusandae, quos voluptas libero facilis voluptate blanditiis sequi a officiis ipsam placeat autem, nulla, eaque debitis accusamus eum! Iure, enim accusantium. Numquam?Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora velit tempore eius magni necessitatibus repellat temporibus voluptate quo. Inventore dolorum facere minima maiores tempora harum non voluptatem deleniti expedita blanditiis.
+        
+        </p>
+    </div>
 
-{% block content %}
+    <div class="browse-container">
+    <a class ='home-browse-btn' href="{% url 'index' %}"> Browse Now</a>
+    </div>
+    <footer class="footer-container">
+        Created by Jacky Cheng   
+        <br>
+        <div class="socials">
+        <a href="https://www.linkedin.com/in/jackychengjc/"> LinkedIn</a> 
+        <a href="https://github.com/jcheng1022"> GitHub </a>
+      </div>
+    </footer>
 
-<h1> Welcome to MarketShop.</h1>
-
-<p> 
-Lorem ipsum dolor sit, amet consectetur adipisicing elit. Recusandae, quos voluptas libero facilis voluptate blanditiis sequi a officiis ipsam placeat autem, nulla, eaque debitis accusamus eum! Iure, enim accusantium. Numquam?Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora velit tempore eius magni necessitatibus repellat temporibus voluptate quo. Inventore dolorum facere minima maiores tempora harum non voluptatem deleniti expedita blanditiis.
-
-</p>
-
-
-{% endblock %}
+    <script>
+        var selectEl = document.getElementById('id_category');
+  M.FormSelect.init(selectEl);
+    </script>
+  </body>
+</html>

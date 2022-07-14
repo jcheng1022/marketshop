@@ -4,7 +4,7 @@
 {% block content  %}
 
 
-
+<h2 class ='index-heading'> Shop for the perfect things you didn't know you needed</h2>
 <div class = "item-container">
 {% for item in items %}
     <div class = "card">
@@ -21,9 +21,9 @@
                     <div class="card-panel center-align">No Photos Uploaded</div>
                     {% endfor %}
                 </div> 
-                <span class="card-title">{{item.name}}</span>
+                <span class="index-item-name">{{item.name}}</span>
                  <br> 
-                ${{item.price}}
+                <span class = "index-item-price">${{item.price}}</span>
 
             </div>
 </a>

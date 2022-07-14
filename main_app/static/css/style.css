@@ -1,14 +1,58 @@
 *{
-    font-family: 'IBM Plex Sans Thai', sans-serif;
+    font-family: 'Secular One', sans-serif;
 }
 
+.left-brand-logo {
+    margin-left: 15px;
+    font-size:35px;
+}
+body{
+    margin:0;
+    background-color: whitesmoke;
+}
+
+.home-page {
+    background-image: url('https://images.unsplash.com/photo-1607083205410-7e6835ffd235?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80');
+    background-size:cover;
+    color:whitesmoke;
+    position: fixed; 
+    width:100%;
+    height:100%;
+}
+.browse-container {
+    display:flex;
+    justify-content:center;
+}
+
+.home-browse-btn {
+    color: whitesmoke;
+    font-weight: 800px;
+    font-size: 50px;
+    border:1px solid white;
+    padding: 15px;
+    border-radius: 50px;
+
+}
+
+
+.home-info {
+    width: 700px;
+    text-align:center;
+    padding-top: 30px;
+    margin: 0 auto;
+    text-shadow: 1px 1px black;
+}
+
+.home-info p {
+    margin: 20px
+}
 .footer-container{
-    position:absolute;
+    position:fixed;
     bottom:0;
     width: 100%;
     margin-top:20px;
     height: 50px;
-    background-color:#a8b1bf;
+    background-color:#303030;
     text-align:center;
   }
 
@@ -101,4 +145,36 @@ grid-row-gap: 0px;
 
 .item-info-container {
     margin-top:30px;
+}
+
+.index-item-name {
+    font-size:25px;
+    color:black;
+}
+
+.index-item-price {
+    font-size: 20px;
+    color:black;
+}
+
+.home-heading {
+    text-align:center;
+    text-shadow: 1px 1px black;
+}
+.index-heading {
+    text-align:center;
+    text-decoration:wavy;
+}
+
+.socials a {
+    text-decoration:none;
+    color: black;
+
+}
+.socials a:hover {
+    color: white;
+}
+
+.navbar-links:hover { 
+background-color:#383838
 }
