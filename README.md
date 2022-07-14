@@ -19,7 +19,7 @@
 <h2> Screenshots</h2>
 <img src="https://i.imgur.com/bwSNOe4.png">
 <img src="https://i.imgur.com/6341dUb.png">
-<img src="https://i.imgur.com/FaaI8IQ.png">
+<img src="https://i.imgur.com/rori8Sn.png">
 
 
 
